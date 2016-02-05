@@ -59,4 +59,5 @@ write.table(personality,"./my23andMe/genes2personality.txt", row.names=FALSE)
 #checks how many of those snps are tested by 23andMe (48 obs of 12 variables)
 Snps_23andMe<-merge(my23andMe_key, personality, by="snp")
 
-
+#writes a separate file with the dates of the last dataset download
+write.table(c("23andMe_key"=date_23andMe, "NHGRI-EBI_GWAS"=date_GWAS), "./Coursera/test-repo/genes2personality/Download_Dates.txt", col.names=F)
