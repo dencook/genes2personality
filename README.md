@@ -3,6 +3,7 @@
 This repository contains: 
 
 2x .R R scripts: genes2personality.R and my23andMe.R
+
 2x .txt files: genes2personality.txt, genes2personalityV2.txt
 
 More information about these files can be found in Codebook.md 
@@ -28,7 +29,7 @@ If you run into trouble, follow the instructions found in these platform-specifi
 
 > source(con)
 
-The first time through, the script will attempt to download the necessary packages from the r-studio cloud repository, if they are not already installed. Several dependencies will be installed as well. If a prompt comes up asking you to if you'd like to save to a personal library instead, type y. 
+The first time through, the script will attempt to download the necessary packages from the r-studio cloud repository, if they are not already installed. Several dependencies will be installed as well. If a prompt comes up asking you if you'd like to save to a personal library instead, type y. 
 
 The script will then create a folder called myData in your working directory, download the genes2personalityV2 dataset and ask you to add your raw 23andMe dataset (.txt file) (or FTDNA .csv file) to the myData folder and rename it YourName_myData. To find your working directory, type getwd(). 
 
