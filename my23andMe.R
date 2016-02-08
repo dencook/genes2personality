@@ -38,7 +38,7 @@ names_split<-sapply(names_split, function(x) x[1])
 
 #checks for number of 23andMe files, joins them together if number > 1. Note that working with more than one dataset #slows down the program significantly. 
 if (length(files_test)==0) {
-    print("Please add your raw 23andMe dataset to this folder and call it YourName_myData.txt")
+    stop("Please add your raw 23andMe dataset to the myData folder and call it YourName_myData.txt")
 }else if (length(files_test)==1) {
     files_23andMe<-fread(files_test, colClasses="character")
     names(files_23andMe)<-c("snp", "chromosome", "position", names_split)

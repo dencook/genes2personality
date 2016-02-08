@@ -20,23 +20,24 @@ if (!file.exists("./myData")){dir.create("./myData")}
 if (!file.exists("./myData/my23andMe_key.txt")) {
   fileUrl<- "https://api.23andme.com/res/txt/snps.b4e00fe1db50.data"
   download.file(fileUrl, "./myData/my23andMe_key.txt")
+  #record the date of download
+  date_23andMe<-date()
 }
 
 #read in the file 1133211 obs of 4 variables
 my23andMe_key<-fread("./myData/my23andMe_key.txt", colClasses="character")
-#record the date of download
-date_23andMe<-date()
+
 
 #download GWAS dataset
 if (!file.exists("./myData/GWAS.tsv")) {
   fileUrl<- "http://www.ebi.ac.uk/gwas/api/search/downloads/full"
   download.file(fileUrl, "./myData/GWAS.tsv")
+  #record the date of download
+  date_GWAS<-date()
 }
 
 #read in the GWAS file 24457 obs. of 34 variables
 GWAS<-read.delim("./myData/GWAS.tsv", colClasses="character")
-#record the date of download
-date_GWAS<-date()
 
 #Select only the rows containing SNPs associated with personality dimensions and temperament. Note that if you wanted #to use this script to subset the data in your own way, this would be where you could do it. This also selects only the #columns I'm interested in keeping. 57 obs. of 9 variables  
 personality<- GWAS %>%
