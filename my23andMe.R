@@ -11,12 +11,12 @@ if (!require("data.table")) {
   install.packages("data.table", repos="https://cran.rstudio.com")
 }
 
-if (!require("dplyr")) {
-  install.packages("dplyr", repos="https://cran.rstudio.com")
-}
-
 if (!require("plyr")) {
   install.packages("plyr", repos="https://cran.rstudio.com")
+}
+
+if (!require("dplyr")) {
+  install.packages("dplyr", repos="https://cran.rstudio.com")
 }
 
 library(data.table); library(plyr); library(dplyr)  

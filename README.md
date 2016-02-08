@@ -26,21 +26,21 @@ If you run into trouble, follow the instructions found in these platform-specifi
 
 > con<- url("https://raw.githubusercontent.com/dencook/genes2personality/master/my23andMe.R")
 
-> source(url)
+> source(con)
 
-The first time through, the script will create a folder called myData in your working directory, download the genes2personalityV2 dataset and ask you to add your raw 23andMe dataset (.txt file) (or FTDNA .csv file) to the myData folder and rename it YourName_myData. To find your working directory, type getwd(). 
+The first time through, the script will attempt to download the necessary packages from the r-studio cloud repository, if they are not already installed. Several dependencies will be installed as well. If a prompt comes up asking you to if you'd like to save to a personal library instead, type y. 
+
+The script will then create a folder called myData in your working directory, download the genes2personalityV2 dataset and ask you to add your raw 23andMe dataset (.txt file) (or FTDNA .csv file) to the myData folder and rename it YourName_myData. To find your working directory, type getwd(). 
 
 Once you've copied over your SNP data, source the script again: 
 
-> source(url)
-
-Once the prompt symbol has returned type: 
-
-> close(con)
+> source(con)
  
 If everything worked out well, you should have two files called myData and myData.simple in the myData folder. The myData.simple file contains your personality trait-related genotypes (found under YourName), along with the trait allele associated with the particular personality trait, the two alleles at that site, and the gene name. 
 
 The myData file contains more extensive documentation, including the author/date/journal that reported the associations, the ancestral allele, the chromosome number and the SNP position. 
 
-   
+Note: this script is capable of merging multiple raw genotype files at once, as long as they all have unique YourName_myData file names. However, the time for data processing slows significantly with > 2 files, although I'm still talking in the low minutes (< 4 minutes for 8 files). Once you merge many datasets together, R will replace any RsIDs not tested for a particular person with "NA". V4 contains by far the greatest number of these personality-trait SNPs (and 23andMe in general (V2-V3) has greater numbers of these SNPs than FTDNA and Ancestry). 
+
+     
 
