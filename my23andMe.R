@@ -8,15 +8,15 @@
 
 #loads required packages, downloads packages if necessary. 
 if (!require("data.table")) {
-  install.packages("data.table")
+  install.packages("data.table", repos="https://cran.rstudio.com")
 }
 
 if (!require("dplyr")) {
-  install.packages("dplyr")
+  install.packages("dplyr", repos="https://cran.rstudio.com")
 }
 
 if (!require("plyr")) {
-  install.packages("plyr")
+  install.packages("plyr", repos="https://cran.rstudio.com")
 }
 
 library(data.table); library(plyr); library(dplyr)  
@@ -38,7 +38,7 @@ names_split<-sapply(names_split, function(x) x[1])
 
 #checks for number of 23andMe files, joins them together if number > 1. Note that working with more than one dataset #slows down the program significantly. 
 if (length(files_test)==0) {
-    stop("Please add your raw 23andMe dataset to the myData folder and call it YourName_myData.txt")
+    stop("Please add your raw 23andMe or FTDNA dataset to the myData folder and call it YourName_myData")
 }else if (length(files_test)==1) {
     files_23andMe<-fread(files_test, colClasses="character")
     names(files_23andMe)<-c("snp", "chromosome", "position", names_split)
@@ -69,3 +69,5 @@ myData_simple<- myData_simple<-select(myData, -c(Ancestral.Allele, MINOR.ALLELE.
 
 #writes this simple file to the 23andMe folder
 write.table(myData_simple, "./myData/myData_simple.txt", row.names=F)
+
+rm(list=ls())
