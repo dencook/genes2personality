@@ -70,4 +70,4 @@ myData_simple<- myData_simple<-select(myData, -c(Ancestral.Allele, MINOR.ALLELE.
 #writes this simple file to the 23andMe folder
 write.table(myData_simple, "./myData/myData_simple.txt", row.names=F)
 
-rm(list=ls())
+close(con)
