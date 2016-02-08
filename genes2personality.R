@@ -1,4 +1,4 @@
-#This script downloads the publicly-accessible NHGRI-EBI Catalog of published genome-wide association studies,  #available in several different formats here: http://www.ebi.ac.uk/gwas/docs/downloads. This script will automatically #download the most recent edition of the Catalog WITHOUT added annotations, into a directory it creates called #my23andMe.  
+#This script downloads the publicly-accessible NHGRI-EBI Catalog of published genome-wide association studies,  #available in several different formats here: http://www.ebi.ac.uk/gwas/docs/downloads. This script will automatically #download the most recent edition of the Catalog WITHOUT added annotations, into a directory it creates called #myData.  
 
 #loads required packages, downloads packages if necessary. data.table and dplyr for increased speed with large #datasets
 
@@ -13,28 +13,28 @@ if (!require("dplyr")) {
 library(data.table); library(dplyr)  
 
 #creates a directory for the GWAS and 23andMe_key files in your current working directory
-if (!file.exists("./my23andMe")){dir.create("./my23andMe")}
+if (!file.exists("./myData")){dir.create("./myData")}
 
 #downloads the 23andMe SNP key found in the documentation for the API: https://api.23andme.com/docs/reference/. Note #that this file contains > 1 million SNPs, which means it represents all the SNPs they have ever tested for (not just #the current V4)
 
-if (!file.exists("./my23andMe/my23andMe_key.txt")) {
+if (!file.exists("./myData/my23andMe_key.txt")) {
   fileUrl<- "https://api.23andme.com/res/txt/snps.b4e00fe1db50.data"
-  download.file(fileUrl, "./my23andMe/my23andMe_key.txt")
+  download.file(fileUrl, "./myData/my23andMe_key.txt")
 }
 
 #read in the file 1133211 obs of 4 variables
-my23andMe_key<-fread("./my23andMe/my23andMe_key.txt", colClasses="character")
+my23andMe_key<-fread("./myData/my23andMe_key.txt", colClasses="character")
 #record the date of download
 date_23andMe<-date()
 
 #download GWAS dataset
-if (!file.exists("./my23andMe/GWAS.tsv")) {
+if (!file.exists("./myData/GWAS.tsv")) {
   fileUrl<- "http://www.ebi.ac.uk/gwas/api/search/downloads/full"
-  download.file(fileUrl, "./my23andMe/GWAS.tsv")
+  download.file(fileUrl, "./myData/GWAS.tsv")
 }
 
 #read in the GWAS file 24457 obs. of 34 variables
-GWAS<-read.delim("./my23andMe/GWAS.tsv", colClasses="character")
+GWAS<-read.delim("./myData/GWAS.tsv", colClasses="character")
 #record the date of download
 date_GWAS<-date()
 
@@ -54,7 +54,7 @@ personality$STRONGEST.SNP.RISK.ALLELE<-sapply(personality$STRONGEST.SNP.RISK.ALL
 names(personality)<-sub("SNPS", "snp", names(personality))
 
 #returns a table containing all the GWAS SNPs found associated with some dimension of personality
-write.table(personality,"./my23andMe/genes2personality.txt", row.names=FALSE)
+write.table(personality,"./myData/genes2personality.txt", row.names=FALSE)
 
 #checks how many of those snps are tested by 23andMe (48 obs of 12 variables)
 Snps_23andMe<-merge(my23andMe_key, personality, by="snp")
