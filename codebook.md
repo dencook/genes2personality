@@ -12,12 +12,12 @@ The genes2personality.R script downloads the publicly-accessible NHGRI-EBI Catal
 
 Catalog stats as of 2016-02-08
 
-*Last data release on 2016-02-06
-*2390 studies
-*14969 SNPs
-*16775 SNP-trait associations
-*Genome assembly GRCh38.p2
-*dbSNP Build 144
+* Last data release on 2016-02-06
+* 2390 studies
+* 14969 SNPs
+* 16775 SNP-trait associations
+* Genome assembly GRCh38.p2
+* dbSNP Build 144
 
 The Catalog has very high selection criteria and is manually curated from published research papers. It only includes studies assaying at least 100,000 SNPs and the associations must have p-values < 1.0 x 10-5 (Hindorff et al., 2009). More information about the Catalog curation process and data extraction procedures can be found here [Methods page](http://www.ebi.ac.uk/gwas/docs/methods).
 
@@ -54,16 +54,16 @@ Alleles, ancestral allele and minor allele frequency were entered manually using
 
 Some column names were changed: 
 
-*Mapped_Gene was replaced with GENE.NAMES
-*STRONGEST.SNP.RISK.ALLELE was replaced with TRAIT.ALLELE
-*P.VALUE.TEXT was replaced with Personality Trait 
+* Mapped_Gene was replaced with GENE.NAMES
+* STRONGEST.SNP.RISK.ALLELE was replaced with TRAIT.ALLELE
+* P.VALUE.TEXT was replaced with Personality Trait 
 
 Column Context was deleted. 
 
 The following rows were deleted: 
 
-*All rows where STRONGEST.SNP.RISK.ALLELE = NA or ? 
-*All rows from the Eriksson N paper ("Common Traits (other)") 
+* All rows where STRONGEST.SNP.RISK.ALLELE = NA or ? 
+* All rows from the Eriksson N paper ("Common Traits (other)") 
 
 The genes2personalityV2.txt forms the basis of the merge done with the my23andMe.R script, described in the README.md file. 
 
